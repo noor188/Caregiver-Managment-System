@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/form.css}">
+    <title>Form</title>
+</head>
+<body class="blue-theme">
+    <ul>
+        <li><a class ="active" href="../index.html">Home</a></li>
+        <li><a href="">Caregivers</a></li>
+        <li><a href="">About</a></li>
+        <li style="float:right"><a href="./login.html"><img src="./images/login-img.png" class="login-user">Login</a></li>
+    </ul>
+    <div class="container">
+        <h1 th:if="*{patient.patientID == null}">Create Patient</h1>
+        <h1 th:if="*{patient.patientID != null}">Update Patient</h1>
+        <form th:action="@{/patients/save}" th:object="${patient}" class="patient-form" method="POST">
+            <input type="hidden" th:field="*{patientID}">
+            <div class="form-group">
+                <label>First name
+                    <input type="text" th:field="*{firstName}" placeholder="Enter first name ..." required>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>Last name
+                    <input type="text" th:field="*{lastName}" placeholder="Enter last name ..." required>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>Age
+                    <input type="number" th:field="*{age}" placeholder="Enter age ..." required>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>Gender
+                    <select th:field="*{gender}">
+                        <option th:value="MALE">Male</option>
+                        <option th:value="FEMALE">Female</option>
+                    </select>
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Language
+                    <select th:field="*{language}">
+                        <option th:value="ENGLISH">English</option>
+                        <option th:value="SPANISH">Spanish</option>
+                    </select>
+                </label>
+            </div>
+
+            <h2>Caregiver preferences</h2>
+            <div class="form-group">
+                <label>Language
+                    <select th:field="*{preference.language}">
+                        <option th:value="ENGLISH">English</option>
+                        <option th:value="SPANISH">Spanish</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>Gender
+                    <select th:field="*{preference.gender}">
+                        <option th:value="MALE">Male</option>
+                        <option th:value="FEMALE">Female</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>Cultural considerations
+                    <textarea th:field="*{preference.culturalConsiderations}" rows="6" cols="9" placeholder="Enter Text ..."></textarea>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>Special care considerations
+                    <textarea th:field="*{preference.specialCareRequirements}" rows="6" cols="9" placeholder="Enter Text ..."></textarea>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>Assign caregiver
+                    <select th:field="*{caregivers}">
+                        <option th:each="caregiver : ${caregivers}" th:value="${caregiver.caregiverID}" th:text="${caregiver.firstName}"></option>
+                    </select>
+                </label>
+            </div>
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+        <a th:href="@{/patients}" class="back-button">Back to patient list</a>
+    </div>
+</body>
+</html>

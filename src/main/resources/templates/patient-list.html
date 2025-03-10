@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/list.css}">
+    <title>List</title>
+</head>
+<body class="blue-theme">
+<ul>
+    <li><a class ="active" href="../index.html">Home</a></li>
+    <li><a href="">Caregivers</a></li>
+    <li><a href="">About</a></li>
+    <li style="float:right"><a href="./login.html"><img src="./images/login-img.png" class="login-user">Login</a></li>
+</ul>
+<div class="container">
+    <h1>Patient list</h1>
+    <a th:href="@{/patients/new}">Create Patient</a>
+    <table>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Age</th>
+            <th>Caregiver</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="patient : ${patients}">
+            <td th:text="${patient.firstName}">firstName</td>
+            <td th:text="${patient.lastName}">lastName</td>
+            <td th:text="${patient.age}">age</td>
+            <td th:text="${patient.caregivers}"></td>
+            <td>
+                <a th:href="@{/patients/edit/{id}(id=${patient.patientID})}">Edit</a>
+                <a th:href="@{/patients/delete/{id}(id=${patient.patientID})}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
