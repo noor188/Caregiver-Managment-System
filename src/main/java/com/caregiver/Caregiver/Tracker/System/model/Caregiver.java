@@ -3,32 +3,16 @@ package com.caregiver.Caregiver.Tracker.System.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
-//@Data
-public class Caregiver {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CaregiverID")
-    private Integer caregiverID;
-
-    @NotNull
-    @NotBlank(message = "first name is required")
-    @Column(name = "FirstName")
-    private String firstName;
-
-    @NotNull
-    @NotBlank(message = "last name is required")
-    @Column(name = "LastName")
-    private String lastName;
+@Data
+public class Caregiver extends BaseUser{
 
     @NotNull
     @NotBlank(message = "age is required")
@@ -44,6 +28,9 @@ public class Caregiver {
     @Enumerated(EnumType.STRING)
     private Speciality speciality;
 
+    @Enumerated(EnumType.STRING)  // Store role as a string in the database
+    private Role role;
+
     @ManyToMany(mappedBy = "caregivers", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Set<Patient> patients = new HashSet<>();
 
@@ -51,53 +38,9 @@ public class Caregiver {
     @JoinColumn(name = "preferenceId")
     private Preference preference;
 
-
-    public Integer getCaregiverID() {
-        return caregiverID;
-    }
-
-    public void setCaregiverID(Integer caregiverID) {
-        this.caregiverID = caregiverID;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public Speciality getSpeciality() {
-        return speciality;
-    }
-
-    public void setSpeciality(Speciality speciality) {
-        this.speciality = speciality;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Set<Patient> getPatients() {
-        return patients;
-    }
-
-    public void setPatients(Set<Patient> patients) {
-        this.patients = patients;
-    }
-
-    public Preference getPreference() {
-        return preference;
-    }
-
-    public void setPreference(Preference preference) {
-        this.preference = preference;
+    public Caregiver(){
+        super();
+        setRole(Role.CAREGIVER);
     }
 
     @NotNull
@@ -126,16 +69,35 @@ public class Caregiver {
         this.language = language;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Caregiver caregiver = (Caregiver) o;
-        return caregiverID == caregiver.caregiverID;
+    public Speciality getSpeciality() {
+        return speciality;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(caregiverID);
+    public void setSpeciality(Speciality speciality) {
+        this.speciality = speciality;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Set<Patient> getPatients() {
+        return patients;
+    }
+
+    public void setPatients(Set<Patient> patients) {
+        this.patients = patients;
+    }
+
+    public Preference getPreference() {
+        return preference;
+    }
+
+    public void setPreference(Preference preference) {
+        this.preference = preference;
     }
 }

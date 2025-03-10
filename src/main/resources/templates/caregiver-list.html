@@ -32,8 +32,8 @@
             <td th:text="${caregiver.speciality}">age</td>
             <td th:text="${caregiver.patients}"></td>
             <td>
-                <a th:href="@{/caregivers/edit/{id}(id=${caregiver.caregiverID})}">Edit</a>
-                <a th:href="@{/caregivers/delete/{id}(id=${caregiver.caregiverID})}">Delete</a>
+                <a th:href="@{/caregivers/edit/{id}(id=${caregiver.id})}">Edit</a>
+                <a th:href="@{/caregivers/delete/{id}(id=${caregiver.id})}">Delete</a>
             </td>
         </tr>
     </table>

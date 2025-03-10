@@ -9,7 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
+import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/caregivers")
@@ -56,5 +59,18 @@ public class CaregiverController {
     public String deleteCaregiver(@PathVariable int id){
         caregiverService.deleteCaregiver(id);
         return "redirect:/caregivers";
+    }
+
+    @GetMapping("/profile")
+    public String caregiverProfile(Principal principal, Model model){
+        Optional<Caregiver> caregiver = caregiverService.findByEmail(principal.getName());
+
+        if(caregiver.isPresent()){
+            Set<Patient> patients = caregiverService.getAllPatients(caregiver.get());
+            model.addAttribute("patients", patients);
+            model.addAttribute("caregiver", caregiver.get());
+            return "caregiver-profile";
+        }
+        return "redirect:/";
     }
 }

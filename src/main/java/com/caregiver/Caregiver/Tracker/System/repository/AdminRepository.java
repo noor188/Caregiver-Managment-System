@@ -1,14 +1,12 @@
 package com.caregiver.Caregiver.Tracker.System.repository;
 
-import com.caregiver.Caregiver.Tracker.System.model.Patient;
+import com.caregiver.Caregiver.Tracker.System.model.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PatientRepository extends JpaRepository<Patient, Integer> {
-    Optional<Patient> findByEmail(String email);
-
+public interface AdminRepository extends JpaRepository<Admin, Integer> {
+    Optional<Admin> findByEmail(String email);
 }
