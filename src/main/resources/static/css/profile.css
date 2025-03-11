@@ -1,0 +1,85 @@
+.blue-theme{
+    background-color: #EEEEEE;
+    color: #1B1B1B;
+    font-family: "Arial", "sans-serif";
+}
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li{
+    float: left;
+    border-right: 1px solid #bbb;
+}
+
+li:last-child{
+    border-right: none;
+}
+
+li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active){
+    background-color: #111;
+}
+
+.active{
+    background-color: #04AA6D;
+}
+
+.login-user{
+    height: 1em;
+    margin-right: 0.5em;
+    vertical-align: bottom;
+}
+
+.login-img{
+    height: 5em;
+    vertical-align: bottom;
+}
+
+.container{
+    max-width: 95%;
+    margin: 10px auto;
+    padding: 20px;
+    background-color: aliceblue;
+    border-radius: 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+}
+
+h1, h2{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1B1B1B;
+}
+
+.caregiver-infromation, .caregiver-patients, .caregiver-perferences{
+    display: flex;
+    flex-direction: column;
+    border-radius: 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: -webkit-fill-available;
+}
+
+.display-group{
+    margin-bottom: 20px;
+}
+
+.display-field{
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 20px;;
+    color: #1B1B1B;
+}
