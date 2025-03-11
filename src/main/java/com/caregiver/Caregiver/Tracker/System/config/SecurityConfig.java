@@ -21,7 +21,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers("/css/**", "/js/**", "/images/**", "/login", "/", "/register").permitAll()  // Public access
+                        .requestMatchers("/css/**", "/js/**", "/image/**", "/login", "/", "/register").permitAll()  // Public access
                         .requestMatchers("/caregivers/profile/**").hasRole("CAREGIVER")  // Caregiver hub
                         .requestMatchers("/patients/profile/**").hasRole("PATIENT")   // Patient task hub
                         .requestMatchers("/caregivers/**", "/patients/**", "/register").hasRole("ADMIN")  // Admin access for managing employees and uploading tasks

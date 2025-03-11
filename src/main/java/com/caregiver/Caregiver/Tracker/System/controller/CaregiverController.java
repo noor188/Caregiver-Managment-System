@@ -2,6 +2,7 @@ package com.caregiver.Caregiver.Tracker.System.controller;
 
 import com.caregiver.Caregiver.Tracker.System.model.Caregiver;
 import com.caregiver.Caregiver.Tracker.System.model.Patient;
+import com.caregiver.Caregiver.Tracker.System.model.Preference;
 import com.caregiver.Caregiver.Tracker.System.service.CaregiverService;
 import com.caregiver.Caregiver.Tracker.System.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,8 +68,10 @@ public class CaregiverController {
 
         if(caregiver.isPresent()){
             Set<Patient> patients = caregiverService.getAllPatients(caregiver.get());
+            Preference preference = caregiver.get().getPreference();
             model.addAttribute("patients", patients);
             model.addAttribute("caregiver", caregiver.get());
+            model.addAttribute("preference", preference);
             return "caregiver-profile";
         }
         return "redirect:/";

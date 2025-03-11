@@ -5,34 +5,48 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
     <title>Document</title>
 </head>
 <body>
-<form th:action="@{/logout}" method="post">
-    <button type="submit">Logout</button>
-</form>
+<ul>
+    <li><a class ="active" th:href="@{/}">Home</a></li>
+    <li style="float:right" >
+        <form th:action="@{/logout}" method="post">
+            <img th:src="@{/image/login-img.png}" class="login-user">
+            <button type="submit" class="login-button">Logout</button>
+        </form>
+    </li>
+</ul>
 
 <h1>Profile for <span th:text="${patient.firstName}"></span></h1>
-
-<h2>Assigned caregivers</h2>
-<table>
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Gender</th>
-        <th>Language</th>
-        <th>Speciality</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="caregiver : ${Caregivers}">
-        <td th:text="${caregiver.firstName}"></td>
-        <td th:text="${caregiver.age}"></td>
-        <td th:text="${caregiver.language}"></td>
-        <td th:text="${caregiver.speciality}"></td>
-    </tr>
-    </tbody>
-</table>
+<div class="container">
+    <div class="caregiver-infromation">
+        <h2>Caregiver information</h2>
+        <div class="display-group">
+            <p class="display-field">First name: <span th:text="${patient.firstName}"></span></p>
+            <p class="display-field">Last name: <span th:text="${patient.lastName}"></span></p>
+            <p class="display-field">Email: <span th:text="${patient.email}"></span></p>
+            <p class="display-field">Age: <span th:text="${patient.age}"></span></p>
+            <p class="display-field">Gender: <span th:text="${patient.gender}"></span></p>
+            <p class="display-field">Language: <span th:text="${patient.language}"></span></p>
+        </div>
+    </div>
+    <div class="caregiver-perferences">
+        <h2>Patient preferences</h2>
+        <div class="display-group">
+            <p class="display-field">Language: <span th:text="${preference.language}"></span></p>
+            <p class="display-field">Gender: <span th:text="${preference.gender}"></span></p>
+            <p class="display-field">Cultural Considerations: <span th:text="${preference.culturalConsiderations}"></span></p>
+            <p class="display-field">Special Care Requirements: <span th:text="${preference.specialCareRequirements}"></span></p>
+        </div>
+    </div>
+    <div class="caregiver-patients">
+        <h2>Assigned caregivers</h2>
+        <ul>
+            <li th:each="caregiver : ${Caregivers}" th:text="${caregiver.firstName}"></li>
+        </ul>
+    </div>
+</div>
 </body>
 </html>

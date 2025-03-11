@@ -12,6 +12,10 @@ ul{
     background-color: #333;
 }
 
+ul .background-color{
+    background-color: #EEEEEE;
+}
+
 li{
     float: left;
     border-right: 1px solid #bbb;
@@ -69,7 +73,49 @@ table{
 }
 
 td, th{
-    border: 1px solid #CBF1F5;
+    border: 1px solid #1B1B1B;
     padding: 10px;
     width: 85%;
+}
+
+a{
+    text-decoration: none;
+}
+
+.caregiver-table{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.login-button{
+    background-color: #333;
+    color: white;
+}
+.submit-button {
+    padding: 15px;
+    background-color: #03dac5;
+    border: none;
+    color: #121212;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.7s ease, color 0.7s ease, text-shadow 0.7s ease-in-out, box-shadow 0.7s ease-in-out;
+}
+
+.submit-button:hover {
+    background-color: #06736a;
+    color: #f1ecec;
+    text-shadow:
+            0 0 5px #b0b659,
+            0 0 10px #5981b6,
+            0 0 15px #0b39e1,
+            0 0 20px #8534db,
+            0 0 35px #d000ff,
+            0 0 40px #34dbc2;
+
+    box-shadow: 0px 0px 20px #fff;
+
 }

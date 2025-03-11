@@ -1,22 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/form.css}">
 </head>
-<body>
+<body class="blue-theme">
+<ul>
+    <li><a class ="active" th:href="@{/}">Home</a></li>
+    <li style="float:right">
+        <form th:action="@{/logout}" method="post">
+            <img th:src="@{/image/login-img.png}" class="login-user">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    </li>
+</ul>
+<div class="container">
 <h1>Login</h1>
-<form th:action="@{/login}" method="post">
+<form th:action="@{/login}" method="post" class="login-form">
     <!-- Form fields for login -->
-    <label for="username">Email:</label>
-    <input type="email" id="username" name="username" required />
+    <div class="form-group">
+        <label for="username">Email:</label>
+        <input type="email" id="username" name="username" required />
+    </div>
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required />
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+    </div>
 
-    <button type="submit">Login</button>
+    <button type="submit" class="submit-button">Login</button>
 </form>
 
 <!-- Link to the register page for new users -->
-<a th:href="@{/register}">Don't have an account? Register here</a>
+<a th:href="@{/register}" class="register-button">Don't have an account? Register here</a>
+</div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -9,34 +9,54 @@
     <title>List</title>
 </head>
 <body class="blue-theme">
-<ul>
-    <li><a class ="active" href="../index.html">Home</a></li>
-    <li><a href="">Caregivers</a></li>
-    <li><a href="">About</a></li>
-    <li style="float:right"><a href="./login.html"><img src="./images/login-img.png" class="login-user">Login</a></li>
+<ul class="nav">
+    <li><a class ="active" th:href="@{/}">Home</a></li>
+    <li><a th:href="@{/patients}">Patients</a></li>
+    <li style="float:right" >
+        <form th:action="@{/logout}" method="post">
+            <img th:src="@{/image/login-img.png}" class="login-user">
+            <button type="submit" class="login-button">Logout</button>
+        </form>
+    </li>
 </ul>
 <div class="container">
     <h1>Caregiver list</h1>
-    <a th:href="@{/caregivers/new}">Create Caregiver</a>
-    <table>
-        <tr>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Speciality</th>
-            <th>Patient</th>
-            <th>Actions</th>
-        </tr>
-        <tr th:each="caregiver : ${caregivers}">
-            <td th:text="${caregiver.firstName}">firstName</td>
-            <td th:text="${caregiver.lastName}">lastName</td>
-            <td th:text="${caregiver.speciality}">age</td>
-            <td th:text="${caregiver.patients}"></td>
-            <td>
-                <a th:href="@{/caregivers/edit/{id}(id=${caregiver.id})}">Edit</a>
-                <a th:href="@{/caregivers/delete/{id}(id=${caregiver.id})}">Delete</a>
-            </td>
-        </tr>
-    </table>
+    <a th:href="@{/caregivers/new}" class="submit-button">Create Caregiver</a>
+    <div class="caregiver-table">
+        <table>
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Language</th>
+                <th>Speciality</th>
+                <th>Patient</th>
+                <th>Actions</th>
+            </tr>
+            <tr th:each="caregiver : ${caregivers}">
+                <td th:text="${caregiver.firstName}">firstName</td>
+                <td th:text="${caregiver.lastName}">lastName</td>
+                <td th:text="${caregiver.email}">email</td>
+                <td th:text="${caregiver.age}">age</td>
+                <td th:text="${caregiver.gender}">gender</td>
+                <td th:text="${caregiver.language}">language</td>
+                <td th:text="${caregiver.speciality}">age</td>
+                <td>
+                    <ul class="background-color">
+                        <li th:each="patient : ${caregiver.patients}">
+                            <span th:text="${patient.firstName}"></span>
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    <a th:href="@{/caregivers/edit/{id}(id=${caregiver.id})}">Edit</a>
+                    <a th:href="@{/caregivers/delete/{id}(id=${caregiver.id})}">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
 </body>
 </html>

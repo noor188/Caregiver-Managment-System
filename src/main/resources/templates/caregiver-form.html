@@ -10,10 +10,14 @@
 </head>
 <body class="blue-theme">
 <ul>
-    <li><a class ="active" href="../index.html">Home</a></li>
-    <li><a href="">Caregivers</a></li>
-    <li><a href="">About</a></li>
-    <li style="float:right"><a href="./login.html"><img src="./images/login-img.png" class="login-user">Login</a></li>
+    <li><a class ="active" th:href="@{/}">Home</a></li>
+    <li><a th:href="@{/patients}">Patients</a></li>
+    <li style="float:right">
+        <form th:action="@{/logout}" method="post">
+            <img th:src="@{/image/login-img.png}" class="login-user">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    </li>
 </ul>
 <div class="container">
     <h1 th:if="*{caregiver.id == null}">Create Caregiver</h1>
@@ -72,7 +76,8 @@
             </label>
         </div>
 
-        <div class="form-group">
+
+        <div th:if="*{id == null}"  class="form-group">
             <label>Password
                 <input type="password" th:field="*{password}" placeholder="Enter phone ..." required />
             </label>
@@ -109,13 +114,13 @@
             </label>
         </div>
 
-        <div class="form-group">
-            <label>Assign patient
-                <select th:field="*{patients}">
-                    <option th:each="patient : ${patients}" th:value="${patient.id}" th:text="${patient.firstName}"></option>
-                </select>
-            </label>
-        </div>
+<!--        <div class="form-group">-->
+<!--            <label>Assign patient-->
+<!--                <select th:field="*{patients}">-->
+<!--                    <option th:each="patient : ${patients}" th:value="${patient.id}" th:text="${patient.firstName}"></option>-->
+<!--                </select>-->
+<!--            </label>-->
+<!--        </div>-->
         <button type="submit" class="submit-button">Submit</button>
     </form>
     <a th:href="@{/caregivers}" class="back-button">Back to patient list</a>

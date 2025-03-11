@@ -1,30 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register</title>
+    <link rel="stylesheet" th:href="@{/css/form.css}">
 </head>
-<body>
+<body class="blue-theme">
+<ul>
+    <li><a class ="active" th:href="@{/}">Home</a></li>
+    <li style="float:right">
+        <form th:action="@{/logout}" method="post">
+            <img th:src="@{/image/login-img.png}" class="login-user">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    </li>
+</ul>
+<div class="container">
 <h1>Register</h1>
 <!-- Thymeleaf registration form (register.html) -->
-<form th:action="@{/register}" th:object="${admin}" method="post">
+<form th:action="@{/register}" th:object="${admin}" method="post" class="register-form">
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" th:field="*{email}" required />
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" required />
+    </div>
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" th:field="*{password}" required />
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" th:field="*{password}" required />
+    </div>
 
     <!-- Optional: Let the user select the role (hidden if you want to set the role in backend) -->
-    <label for="role">Role:</label>
-    <select id="role" th:field="*{role}">
-        <option value="ADMIN">Admin</option>
-    </select>
+    <div class="form-group">
+        <label for="role">Role:</label>
+        <select id="role" th:field="*{role}">
+            <option value="ADMIN">Admin</option>
+        </select>
+    </div>
 
-    <button type="submit">Register</button>
+    <button type="submit" class="submit-button">Register</button>
 </form>
 
 
 <!-- Link to the login page -->
-<a th:href="@{/login}">Already have an account? Login here</a>
+<a th:href="@{/login}" class="login-button">Already have an account? Login here</a>
+</div>
 </body>
 </html>

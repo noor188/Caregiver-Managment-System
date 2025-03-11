@@ -50,7 +50,7 @@ li a:hover:not(.active){
 
 .container{
     max-width: 600px;
-    margin: 0 auto;
+    margin: 10px auto;
     padding: 20px;
     background-color: aliceblue;
     border-radius: 0px;
@@ -63,7 +63,7 @@ h1, h2{
     color: #1B1B1B;
 }
 
-.patient-form{
+.login-form, .register-form{
     display: flex;
     flex-direction: column;
 }
@@ -80,6 +80,9 @@ label{
 
 input[type="text"],
 input[type="number"],
+input[type="email"],
+input[type="password"],
+select,
 textarea {
     width: 96%;
     padding: 10px;
@@ -87,6 +90,11 @@ textarea {
     border: 1px solid #555;
     border-radius: 4px;
     color: #e0e0e0;
+}
+
+select{
+    background-color: #EEEEEE;
+    color: #1B1B1B;
 }
 
 input[type="text"]::placeholder,
@@ -98,6 +106,7 @@ textarea::placeholder {
 textarea {
     resize: none;
 }
+
 
 .submit-button {
     padding: 15px;
@@ -126,7 +135,7 @@ textarea {
 
 }
 
-.back-button {
+.register-button, .login-button, .back-button {
     display: block;
     margin: 20px 0;
     padding: 12px;
@@ -139,7 +148,7 @@ textarea {
     transition: color 0.7s ease, text-shadow 0.7s ease-in-out, box-shadow 0.7s ease-in-out;
 }
 
-.back-button:hover {
+.register-button:hover, .back-button:hover {
     background-color: #8534db;
     color: #ccc;
     text-shadow:
