@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import java.security.Principal;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/patients")
@@ -58,5 +60,18 @@ public class PatientController {
     public String deletePatient(@PathVariable int id){
         patientService.deletePatient(id);
         return "redirect:/patients";
+    }
+
+    @GetMapping("/profile")
+    public String patientProfile(Principal principal, Model model){
+        Optional<Patient> patient = patientService.findByEmail(principal.getName());
+
+        if(patient.isPresent()){
+            Set<Caregiver> caregivers = patientService.getAllCaregiver(patient.get());
+            model.addAttribute("caregivers", caregivers);
+            model.addAttribute("patient", patient.get());
+            return "patient-profile";
+        }
+        return "redirect:/";
     }
 }

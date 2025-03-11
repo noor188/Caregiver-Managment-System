@@ -16,10 +16,10 @@
         <li style="float:right"><a href="./login.html"><img src="./images/login-img.png" class="login-user">Login</a></li>
     </ul>
     <div class="container">
-        <h1 th:if="*{patient.patientID == null}">Create Patient</h1>
-        <h1 th:if="*{patient.patientID != null}">Update Patient</h1>
+        <h1 th:if="*{patient.id == null}">Create Patient</h1>
+        <h1 th:if="*{patient.id != null}">Update Patient</h1>
         <form th:action="@{/patients/save}" th:object="${patient}" class="patient-form" method="POST">
-            <input type="hidden" th:field="*{patientID}">
+            <input type="hidden" th:field="*{id}">
             <div class="form-group">
                 <label>First name
                     <input type="text" th:field="*{firstName}" placeholder="Enter first name ..." required>
@@ -52,6 +52,18 @@
                         <option th:value="ENGLISH">English</option>
                         <option th:value="SPANISH">Spanish</option>
                     </select>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>Email
+                    <input type="email" th:field="*{email}" placeholder="Enter email ..." required />
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>Password
+                    <input type="password" th:field="*{password}" placeholder="Enter phone ..." required />
                 </label>
             </div>
 
@@ -89,7 +101,7 @@
             <div class="form-group">
                 <label>Assign caregiver
                     <select th:field="*{caregivers}">
-                        <option th:each="caregiver : ${caregivers}" th:value="${caregiver.caregiverID}" th:text="${caregiver.firstName}"></option>
+                        <option th:each="caregiver : ${caregivers}" th:value="${caregiver.id}" th:text="${caregiver.firstName}"></option>
                     </select>
                 </label>
             </div>
